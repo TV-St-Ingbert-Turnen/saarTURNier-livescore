@@ -1,0 +1,29 @@
+SELECT t.name, p.name, p.gender, ga.name, pa.e_Value, pa.d_value, p.team
+FROM `participants` AS p, participant_apparatus AS pa, gymnastic_apparatus AS ga, teams AS t
+WHERE t.id = p.team 
+	AND p.id = pa.pID
+    AND ga.id = pa.aID
+Order By p.team,p.name
+
+
+SELECT t.name, p.name, p.gender, p.id, p.team
+FROM `participants` AS p, teams AS t
+WHERE t.id = p.team 
+Order By p.team,p.name
+
+
+create view v_best_participants as 
+SELECT p.gender, p.team, p.id, pa.aID, pa.score
+FROM participants as p, participant_apparatus as pa
+WHERE p.id = pa.pID and (
+	SELECT count(*) 
+    from participants as p2, participant_apparatus as pa2
+    WHERE p2.id = pa2.pID and p.team = p2.team and pa.aID = pa2.aID and p.gender = p2.gender and pa2.score >= pa.score
+) <=2;
+
+
+create view v_team_apparatus as
+SELECT v.team, v.aID, SUM(v.score)
+FROM v_best_participants as v
+GROUP BY v.team, v.aID
+ORDER BY v.aID, v.team

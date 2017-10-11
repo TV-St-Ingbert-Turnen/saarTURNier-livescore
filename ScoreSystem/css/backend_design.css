@@ -1,0 +1,45 @@
+body{
+
+}
+
+.banner-top{
+	height:10%;
+	width:98%;
+	background-color: Orange;
+	text-align: center;
+	
+	margin:5px;
+}
+
+.menu-left{
+	width:10%;
+	background-color: Orange;
+	text-align: center;
+	padding:5px;
+	
+	margin:5px;
+	float:left;
+}
+
+.content{
+	background-color: Black;
+	color:white;
+	padding:5px;
+	margin:5px;
+	width:85%;
+	float: left;
+}
+
+.table_participant_apparature{
+	color:white;
+	border-collapse: collapse;
+}
+
+.table_participant_apparature tr,td{
+	border: solid 1px white;
+}
+
+.table_participant_apparature td{
+	border: solid 1px white;
+	padding:5px;
+}
