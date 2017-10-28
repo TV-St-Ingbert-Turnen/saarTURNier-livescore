@@ -31,6 +31,15 @@
 							<a href="teamResultView.php?year=2016" class="btn btn-warning btn-block btn-lg" role="button">Team</a>
 						</div>
 					</div>
+					<h2>2017</h2>
+					<div class="row" >
+						<div class="col-xs-6 col-md-6">
+							<a href="resultsView.php?year=2017" class="btn btn-warning btn-block btn-lg" role="button">Einzel</a>
+						</div>
+						<div class="col-xs-6 col-md-6">
+							<a href="teamResultView.php?year=2017" class="btn btn-warning btn-block btn-lg" role="button">Team</a>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="row" style="margin-top: 48px">

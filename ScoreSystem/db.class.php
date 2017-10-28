@@ -26,11 +26,11 @@ class db{
 		}
 	}
 	
-	function addTeam($id,$name){
-		if(!($stmt = self::$mysqli->prepare("INSERT INTO teams(id,name) VALUES(?,?)"))){
+	function addTeam($id,$name,$year){
+		if(!($stmt = self::$mysqli->prepare("INSERT INTO teams(id,name,year) VALUES(?,?,?)"))){
 			echo "Prepare failed: (" . self::$mysqli->errno . ") " . self::$mysqli->error;
 		}
-		if (!$stmt->bind_param("is", $id, $name)) {
+		if (!$stmt->bind_param("isi", $id, $name, $year)) {
 			echo "Binding parameters failed: (" . $stmt->errno . ") " . $stmt->error;
 		}
 		if (!$stmt->execute()) {

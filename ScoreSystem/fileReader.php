@@ -9,7 +9,7 @@
 	//read teams
 	if(($f = fopen($file_teams,"r")) !== FALSE){
 		while(($row = fgetcsv($f,1000,";")) !== FALSE){
-			$db->addTeam($row[0],$row[1]);
+			$db->addTeam($row[0],$row[1],$row[2]);
 		}
 		fclose($f);
 	}
