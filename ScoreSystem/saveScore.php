@@ -1,4 +1,6 @@
 <?php
+    $year = intval(isset($_GET['year']) ? $_GET['year'] : 2015);
+
 	require("db.class.php");
 	$db = new db();
 	
@@ -18,5 +20,5 @@
 		}
 	}
 	
-	header("location: participantsAdministration.php");
+	header("location: participantsAdministration.php?year=" . $year);
 ?>

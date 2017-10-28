@@ -14,7 +14,7 @@
 	
 	print("<div id='accordion'>");
 	foreach($partic as $tkey=>$team){
-		print("<h3>".$team[0]."</h3><div><form method='POST' action='saveScore.php'>");
+		print("<h3>".$team[0]."</h3><div><form method='POST' action='saveScore.php?year=$year'>");
 		print("<table class='table table-hover'><thead><tr><th><input type='submit' name='save' value='speichern'></th>");
 		foreach($apparatus as $a){
 			print("<th>".$a[0]."</th>");
