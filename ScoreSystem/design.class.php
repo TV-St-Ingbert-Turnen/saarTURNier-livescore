@@ -6,13 +6,13 @@
 		private $header;
 		private $body;
 		
-		function __construct($property){
+		function __construct($property, $year){
 			$design_output = "";
 			
 			if($property == self::backend_full_design){
 				$header = self::createBackendHeader();
 				$body = self::createTopBanner();
-				$body .= self::createBackendMenu();
+				$body .= self::createBackendMenu($year);
 			}
 			$design_output .= '<!DOCTYPE html>
 									<html lang="de">';
@@ -53,7 +53,7 @@
 			return $ret;
 		}
 		
-		function createBackendMenu(){
+		function createBackendMenu($year){
 			$ret = '
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 				<div class="container">
@@ -72,7 +72,7 @@
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav">
 							<li><a class="menu-link" href="controlBoard.php">Home</a></li>
-							<li><a class="menu-link" href="participantsAdministration.php">Ergebnis Erfassung</a></li>
+							<li><a class="menu-link" href="participantsAdministration.php?year=' . $year . '">Ergebnis Erfassung</a></li>
 							<li><a class="menu-link" href="frontendControler.php">Anzeigesteuerung</a></li>
 							<li><a class="menu-link" href="index.html">Zurück zum Startmenü</a></li>
 					</div>

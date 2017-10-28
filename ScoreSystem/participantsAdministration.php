@@ -1,14 +1,15 @@
 <?php
+    $year = intval(isset($_GET['year']) ? $_GET['year'] : 2015);
 	require("db.class.php");
 	$db = new db();
 	require("design.class.php");
-	$design = new design("backend_full");
+	$design = new design("backend_full", $year);
 	
 	print('
 	<div class="container" style="margin-top:5em">');
 
 	$apparatus = $db->getApparatus();
-	$partic = $db->getParticipants();
+	$partic = $db->getParticipants($year);
 	$score = $db->getAllScore();
 	
 	print("<div id='accordion'>");
