@@ -1,6 +1,7 @@
 <?php
+    $year = intval(isset($_GET['year']) ? $_GET['year'] : 2015);
 	require("design.class.php");
-	$design = new design("frontend_full");
+	$design = new design("frontend_full", null);
 	
 	print('
 	<div class="jumbotron">
@@ -10,14 +11,24 @@
 					<img src="ScoreSystem/img/STLogo.jpg" alt="SaarTURNier Logo" class="img-responsive">
 				</div>
 				<div class="col-md-6">
-					<h1>SaarTURNier 2016</h1>
-					<p>Das SaarTURNier geht in die 2. Runde. Wie letztes Jahr könnt ihr euch die Ergebnisse live ansehen. Sieh dir jederzeit die Einzel- bzw. Teamwertungen vom SaarTURNier 2016 an.</p>
+					<h1>Ergebnisse</h1>
+					<p>Hier kannst du dir die Einzel- und Teamergebnisse der letzten Jahre ansehen. Einfach auf die entsprechende Schaltfläche klicken und los geht\'s.</p>
+					<h2>2015</h2>
 					<div class="row" >
 						<div class="col-xs-6 col-md-6">
-							<a href="resultsView.php" class="btn btn-warning btn-block btn-lg" role="button">Einzel</a>
+							<a href="resultsView.php?year=2015" class="btn btn-warning btn-block btn-lg" role="button">Einzel</a>
 						</div>
 						<div class="col-xs-6 col-md-6">
-							<a href="teamResultView.php" class="btn btn-warning btn-block btn-lg" role="button">Team</a>
+							<a href="teamResultView.php?year=2015" class="btn btn-warning btn-block btn-lg" role="button">Team</a>
+						</div>
+					</div>
+					<h2>2016</h2>
+					<div class="row" >
+						<div class="col-xs-6 col-md-6">
+							<a href="resultsView.php?year=2016" class="btn btn-warning btn-block btn-lg" role="button">Einzel</a>
+						</div>
+						<div class="col-xs-6 col-md-6">
+							<a href="teamResultView.php?year=2016" class="btn btn-warning btn-block btn-lg" role="button">Team</a>
 						</div>
 					</div>
 				</div>

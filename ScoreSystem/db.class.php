@@ -88,9 +88,9 @@ class db{
 		return $array;
 	}
 	
-	function getParticipants(){
+	function getParticipants($year){
 		$array = array();
-		if(!($result = self::$mysqli->query("SELECT * FROM teams ORDER BY id"))){
+		if(!($result = self::$mysqli->query("SELECT * FROM teams WHERE year=$year ORDER BY id"))){
 				echo "Select Team failed: (" . self::$mysqli->errno . ") " . self::$mysqli->error;
 			}
 		while($row = $result->fetch_array()){
@@ -98,11 +98,16 @@ class db{
 		}
 		
 		
-		if(!($result = self::$mysqli->query("SELECT * FROM participants ORDER BY team,gender,name"))){
+		if(!($result = self::$mysqli->query("SELECT `p`.`team` AS `team`, `p`.`name` AS `name`, `p`.`gender` AS `gender`, `p`.`id` as `id` \n"
+		. "FROM `participants` AS `p` JOIN `teams` AS `t` ON `p`.`team`=`t`.`id` \n"
+		. "WHERE `t`.`year`=$year \n"
+		. "ORDER BY `p`.`team`,`p`.`gender`,`p`.`name`"))){
 				echo "Select Participants failed: (" . self::$mysqli->errno . ") " . self::$mysqli->error;
 			}
-		while($row = $result->fetch_array()){
-			$array[$row["team"]][1][] = array($row["name"],$row["gender"], $row["id"]);
+		while($row = $result->fetch_array()) {
+			if (key_exists($row["team"], $array)) {
+				$array[$row["team"]][1][] = array($row["name"], $row["gender"], $row["id"]);
+			}
 		}
 		return $array;
 	}
@@ -131,9 +136,10 @@ class db{
 		return $array;
 	}
 	
-	function getTeamRanking(){
+	function getTeamRanking($year){
 		$sql = "SELECT `r`.`team` AS `tid`, `t`.`name`, COUNT( DISTINCT(`ga`.`eID`)) AS `done`, SUM(`r`.`SUM(v.score)`) AS `score` \n"
-     . "FROM `v_team_apparatus` AS `r` JOIN `teams` AS `t` ON `r`.`team` = `t`.`id` JOIN `gymnastic_apparatus` AS `ga` ON `ga`.`id` = `r`.`aID`\n"
+     . "FROM `v_team_apparatus` AS `r` JOIN `teams` AS `t` ON `r`.`team` = `t`.`id` JOIN `gymnastic_apparatus` AS `ga` ON `ga`.`id` = `r`.`aID` \n"
+	 . "WHERE `t`.`year`=$year \n"
      . "GROUP BY `r`.`team`\n"
      . "ORDER BY `score` DESC";
 		$array = array();

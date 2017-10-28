@@ -1,10 +1,13 @@
 <?php
 	require("ScoreSystem/db.class.php");
 	$db = new db();
-	require("design.class.php");
-	$design = new design("frontend_full");
 
-	$score = $db->getTeamRanking();
+	$year = intval(isset($_GET['year']) ? $_GET['year'] : 2015);
+
+	require("design.class.php");
+	$design = new design("frontend_full", $year);
+
+	$score = $db->getTeamRanking($year);
 ?>
 	
 <div class="container" style="margin-top:5em">

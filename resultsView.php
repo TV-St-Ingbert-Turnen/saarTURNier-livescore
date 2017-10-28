@@ -1,15 +1,31 @@
 <?php
 	require("ScoreSystem/db.class.php");
 	$db = new db();
+
+    $year = intval(isset($_GET['year']) ? $_GET['year'] : 2015);
+
+
 	require("design.class.php");
-	$design = new design("frontend_full");
+	$design = new design("frontend_full", $year);
+
+
 	
 	$apparatus = $db->getApparatus();
-	$partic = $db->getParticipants();
-	$score = $db->getAllScore();
+	$partic = $db->getParticipants($year);
+	$score = $db->getAllScore($year);
+
+
 ?>
 	
 <div class="container" style="margin-top:5em">
+
+    <div class="row" >
+		<div class="col-md-4">
+        	<h1><?php echo "$year"; ?></h1>
+		</div>
+    </div>
+
+
 <div id='accordion' style='heightStyle: "content"'>
 
 <?php

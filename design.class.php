@@ -7,23 +7,23 @@ class design{
 	private $header;
 	private $body;
 
-	function __construct($property){
-		$design_output = "";
+	function __construct($property, $year){
+			$design_output = "";
 
-		if($property == self::frontend_full_design){
-			$head = self::createFrontendHeader();
-			$body = self::createFrontendMenu();
-		}
-		$design_output .= '<!DOCTYPE html>
+			if($property == self::frontend_full_design){
+				$head = self::createFrontendHeader();
+				$body = self::createFrontendMenu($year);
+			}
+			$design_output .= '<!DOCTYPE html>
 									<html lang="de">';
-		$design_output .= '<head>';
-		$design_output .= $head;
-		$design_output .= '</head><body>';
-		$design_output .= $body;
-		$design_output .= '</html>';
-
-		print($design_output);
-	}
+			$design_output .= '<head>';
+			$design_output .= $head;
+			$design_output .= '</head><body>';
+			$design_output .= $body;
+			$design_output .= '</html>';
+			
+			print($design_output);
+		}
 
 	function footer(){
 
@@ -45,7 +45,7 @@ class design{
 		return $ret;
 	}
 
-	function createFrontendMenu(){
+	function createFrontendMenu($year){
 		$ret = '
 			<nav class="navbar navbar-inverse navbar-fixed-top">
 				<div class="container">
@@ -62,10 +62,13 @@ class design{
 					  </a>
 					</div>
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
-							<li><a class="menu-link" href="resultsView.php">Einzelergebnisse</a></li>
-							<li><a class="menu-link" href="teamResultView.php">Teamergebnisse</a></li>
-					</div>
+						<ul class="nav navbar-nav">';
+
+		if (is_int($year)) {
+			$ret .= '<li><a class="menu-link" href="resultsView.php?year=' . $year . '">Einzelergebnisse ' . $year . '</a></li>
+					<li><a class="menu-link" href="teamResultView.php?year=' . $year . '">Teamergebnisse ' . $year . '</a></li>';
+							}
+		$ret .=		'</div>
 				</div>
 			</nav>
 			';
