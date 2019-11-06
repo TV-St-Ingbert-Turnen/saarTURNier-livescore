@@ -2,7 +2,7 @@
 Score management for the SaarTURNier competition by TV St. Ingbert
 
 ## Setup Database
-TODO
+open your database and run the statement in [`create_database.sql`](https://github.com/MichaelBarz/saarTURNier-livescore/blob/master/ScoreSystem/db_utils/create_database.sql)
 
 ## Get Started for Competition
 * generate `participants.csv` and `teams.csv` using [saarTURNier-utils](https://github.com/MichaelBarz/saarTURNier-utils)
